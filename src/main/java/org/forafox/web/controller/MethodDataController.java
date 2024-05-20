@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.forafox.kafka.service.messaging.producer.Producer;
 import org.forafox.service.MethodDataService;
 import org.forafox.web.dto.MethodDataDTO;
 import org.forafox.web.dto.MethodDataStatDTO;
@@ -22,6 +23,7 @@ import java.util.List;
 public class MethodDataController {
     private final MethodDataService methodDataService;
     private final MethodDataMapper methodDataMapper;
+    private final Producer producer;
 
     @GetMapping("")
     @Operation(summary = "Get all methods data", description = "Get a list of all  methods data.", operationId = "getAllMethodsData")
@@ -64,4 +66,13 @@ public class MethodDataController {
         methodDataService.clearData();
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/metrics")
+    public MethodDataDTO sendDataToKafka(
+            @RequestBody MethodDataDTO methodDataDTO
+    ) {
+        return methodDataMapper.toDto(producer.sendMethodData(methodDataMapper.toEntity(methodDataDTO)));
+    }
+
+
 }
