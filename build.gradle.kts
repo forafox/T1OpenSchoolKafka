@@ -19,6 +19,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-aop")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
+    implementation("org.springframework.kafka:spring-kafka:3.1.4")
     implementation("org.projectlombok:lombok:1.18.28")
     annotationProcessor("org.projectlombok:lombok")
     runtimeOnly("org.postgresql:postgresql")
