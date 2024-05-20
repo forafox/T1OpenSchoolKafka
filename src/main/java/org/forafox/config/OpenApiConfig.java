@@ -8,7 +8,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @OpenAPIDefinition(
         info = @Info(
-                title = "T1 Open School AOP",
+                title = "T1 Open School Kafka",
                 description = "Sample API of the AOP Test", version = "1.0.0",
                 contact = @Contact(
                         name = "Karabanov Andrey",
@@ -16,7 +16,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
                 )
         ),
         servers = {
-                @Server(url = "http://localhost:8080", description = "Default Server URL"),
+                @Server(url = "http://localhost:8081", description = "Default Server URL"),
         },
         tags = {
                 @Tag(name = "Film API", description = "API for films"),
