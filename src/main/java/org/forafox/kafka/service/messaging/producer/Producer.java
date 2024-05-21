@@ -2,9 +2,8 @@ package org.forafox.kafka.service.messaging.producer;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.forafox.domain.MethodData;
+import org.forafox.kafka.service.messaging.event.SendMethodDataEvent;
 import org.forafox.kafka.service.messaging.service.KafkaMessagingService;
-import org.forafox.web.mapper.SendMethodDataEventMapper;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -13,14 +12,13 @@ import org.springframework.stereotype.Component;
 public class Producer {
 
     private final KafkaMessagingService kafkaMessagingService;
-    private final SendMethodDataEventMapper sendMethodDataEventMapper;
-    public MethodData sendMethodData(MethodData methodData) {
-        kafkaMessagingService.sendMethodData(sendMethodDataEventMapper.toDto(methodData));
+    public SendMethodDataEvent sendMethodData(SendMethodDataEvent methodData) {
+        kafkaMessagingService.sendMethodData(methodData);
         log.info("Send method data from producer {}", methodData);
         return methodData;
     }
-    public MethodData sendAsyncMethodData(MethodData methodData) {
-        kafkaMessagingService.sendAsyncMethodData(sendMethodDataEventMapper.toDto(methodData));
+    public SendMethodDataEvent sendAsyncMethodData(SendMethodDataEvent methodData) {
+        kafkaMessagingService.sendAsyncMethodData(methodData);
         log.info("Send async method data from producer {}", methodData);
         return methodData;
     }
