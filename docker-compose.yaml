@@ -9,23 +9,6 @@ volumes:
     driver: local
 
 services:
-  app:
-    build:
-      context: .
-    container_name: T1OpenSchoolKafka-container
-    env_file: .env
-    networks:
-      - backend
-    depends_on:
-      - postgres
-    environment:
-      - HOST=postgres:5432
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    ports:
-      - '8080:8080'
-
   zookeeper:
     image: confluentinc/cp-zookeeper:6.2.4
     healthcheck:
@@ -117,3 +100,36 @@ services:
       echo -e 'Successfully created the following topics:'
       kafka-topics --bootstrap-server kafka:9092 --list
       "
+  consumer:
+    build:
+      context: .
+      dockerfile: Consumer.dockerfile
+    env_file: .env
+    networks:
+      - backend
+    depends_on:
+      - postgres
+    environment:
+      - HOST=postgres:5432
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '8082:8082'
+
+  producer:
+      build:
+        context: .
+        dockerfile: Producer.dockerfile
+      env_file: .env
+      networks:
+        - backend
+      depends_on:
+        - postgres
+      environment:
+        - HOST=postgres:5432
+        - POSTGRES_DB=postgres
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+      ports:
+        - '8081:8081'
