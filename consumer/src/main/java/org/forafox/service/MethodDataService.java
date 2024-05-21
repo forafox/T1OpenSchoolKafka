@@ -1,7 +1,7 @@
 package org.forafox.service;
 
 import org.forafox.domain.MethodData;
-import org.forafox.web.dto.MethodDataStatDTO;
+import org.forafox.web.controller.dto.MethodDataStatDTO;
 
 import java.util.List;
 

@@ -6,11 +6,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.forafox.kafka.service.messaging.producer.Producer;
+import org.forafox.mapper.MethodDataMapper;
 import org.forafox.service.MethodDataService;
-import org.forafox.web.dto.MethodDataDTO;
-import org.forafox.web.dto.MethodDataStatDTO;
-import org.forafox.web.mapper.MethodDataMapper;
+import org.forafox.web.controller.dto.MethodDataDTO;
+import org.forafox.web.controller.dto.MethodDataStatDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +22,6 @@ import java.util.List;
 public class MethodDataController {
     private final MethodDataService methodDataService;
     private final MethodDataMapper methodDataMapper;
-    private final Producer producer;
 
     @GetMapping("")
     @Operation(summary = "Get all methods data", description = "Get a list of all  methods data.", operationId = "getAllMethodsData")
@@ -67,12 +65,12 @@ public class MethodDataController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/metrics")
-    public MethodDataDTO sendDataToKafka(
-            @RequestBody MethodDataDTO methodDataDTO
-    ) {
-        return methodDataMapper.toDto(producer.sendMethodData(methodDataMapper.toEntity(methodDataDTO)));
-    }
+//    @PostMapping("/metrics")
+//    public MethodDataDTO sendDataToKafka(
+//            @RequestBody MethodDataDTO methodDataDTO
+//    ) {
+//        return methodDataMapper.toDto(producer.sendMethodData(methodDataMapper.toEntity(methodDataDTO)));
+//    }
 
 
 }

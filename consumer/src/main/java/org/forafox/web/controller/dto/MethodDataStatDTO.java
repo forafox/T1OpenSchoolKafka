@@ -1,4 +1,4 @@
-package org.forafox.web.dto;
+package org.forafox.web.controller.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

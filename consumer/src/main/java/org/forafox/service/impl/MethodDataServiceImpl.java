@@ -1,11 +1,10 @@
 package org.forafox.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.forafox.annotation.TrackAsyncTime;
 import org.forafox.domain.MethodData;
 import org.forafox.repository.MethodDataRepository;
 import org.forafox.service.MethodDataService;
-import org.forafox.web.dto.MethodDataStatDTO;
+import org.forafox.web.controller.dto.MethodDataStatDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

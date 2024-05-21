@@ -1,7 +1,7 @@
-package org.forafox.web.mapper;
+package org.forafox.mapper;
 
 import org.forafox.domain.MethodData;
-import org.forafox.web.dto.MethodDataDTO;
+import org.forafox.web.controller.dto.MethodDataDTO;
 import org.mapstruct.Mapper;
 
 import java.util.List;
