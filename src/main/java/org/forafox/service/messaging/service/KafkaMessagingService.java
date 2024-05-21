@@ -1,6 +1,6 @@
-package org.forafox.kafka.service.messaging.service;
+package org.forafox.service.messaging.service;
 
-import org.forafox.kafka.service.messaging.event.SendMethodDataEvent;
+import org.forafox.service.messaging.event.SendMethodDataEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;

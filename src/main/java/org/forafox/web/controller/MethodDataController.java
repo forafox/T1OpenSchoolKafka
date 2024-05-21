@@ -1,10 +1,12 @@
 package org.forafox.web.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.forafox.kafka.service.messaging.event.SendMethodDataEvent;
-import org.forafox.kafka.service.messaging.producer.Producer;
-import org.forafox.web.dto.MethodDataDTO;
+import org.forafox.service.messaging.event.SendMethodDataEvent;
+import org.forafox.service.messaging.producer.Producer;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,10 @@ public class MethodDataController {
     private final Producer producer;
 
     @PostMapping("")
+    @Operation(summary = "Create a new method data", description = "Creates a new method data", operationId = "createMethodData")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Successful operation"),
+    })
     public SendMethodDataEvent sendDataToKafka(
             @RequestBody SendMethodDataEvent sendMethodDataEvent
     ) {

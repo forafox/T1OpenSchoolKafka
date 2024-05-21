@@ -1,7 +1,7 @@
-package org.forafox.kafka.service.messaging.producer;
+package org.forafox.service.messaging.producer;
 
-import org.forafox.kafka.service.messaging.event.SendMethodDataEvent;
-import org.forafox.kafka.service.messaging.service.KafkaMessagingService;
+import org.forafox.service.messaging.event.SendMethodDataEvent;
+import org.forafox.service.messaging.service.KafkaMessagingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

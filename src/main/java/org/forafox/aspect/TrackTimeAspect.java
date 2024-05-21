@@ -5,8 +5,8 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.forafox.domain.enums.AnnotationType;
-import org.forafox.kafka.service.messaging.event.SendMethodDataEvent;
-import org.forafox.kafka.service.messaging.producer.Producer;
+import org.forafox.service.messaging.event.SendMethodDataEvent;
+import org.forafox.service.messaging.producer.Producer;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;

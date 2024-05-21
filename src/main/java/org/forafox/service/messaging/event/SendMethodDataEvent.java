@@ -1,4 +1,4 @@
-package org.forafox.kafka.service.messaging.event;
+package org.forafox.service.messaging.event;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
