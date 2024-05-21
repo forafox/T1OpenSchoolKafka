@@ -1,8 +1,8 @@
 package org.forafox.web.dto;
 
+import org.forafox.domain.enums.AnnotationType;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
-import org.forafox.domain.enums.AnnotationType;
 
 import java.util.Date;
 

@@ -1,6 +1,5 @@
 package org.forafox.kafka.service.messaging.event;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.forafox.domain.enums.AnnotationType;
 
