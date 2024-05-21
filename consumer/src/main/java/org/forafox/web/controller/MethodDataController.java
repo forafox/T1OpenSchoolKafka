@@ -64,13 +64,4 @@ public class MethodDataController {
         methodDataService.clearData();
         return ResponseEntity.noContent().build();
     }
-
-//    @PostMapping("/metrics")
-//    public MethodDataDTO sendDataToKafka(
-//            @RequestBody MethodDataDTO methodDataDTO
-//    ) {
-//        return methodDataMapper.toDto(producer.sendMethodData(methodDataMapper.toEntity(methodDataDTO)));
-//    }
-
-
 }

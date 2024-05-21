@@ -15,7 +15,7 @@ Consumer для их обработки и анализа, а также REST AP
 
 ## Особенности
 
-- Документация к API.(Интерактивная и api-docs.json)
+- Документация к API.(Интерактивная и consumer-api-docs.json,producer-api-docs.json)
 - Для приложения разработана инструкция по сборке. Сборка выполняется с помощью Docker.
 - Присутствует файл .env. Представленные данные являются публичными и используются только! при тестировании.
 
@@ -24,23 +24,35 @@ Consumer для их обработки и анализа, а также REST AP
 ### Producer Service:
 
 1. Создан микросервис "Metrics Producer", который отслеживает и собирает метрики работы приложения
-   и отправляет их в Kafka топик "metrics-topic".
+   и отправляет их в Kafka топики. (Данные не асинхронных методов```send-methodData-event```, Данные асинхронных
+   методов ```send-asyncMethodData-event```)
 2. Реализованы следующие API для взаимодействия с микросервисом:
-    - POST /metrics: Отправка метрик работы приложения в формате JSON. Метрики могут включать информацию о
-      производительности, использовании ресурсов, ошибках и т. д.
+    - POST /methodData: Отправка метрики данных о работе метода.
+
+```json
+{
+  "executeDate": "2024-05-04T23:29:18.525Z",
+  "methodName": "FilmServiceImpl.create(..)",
+  "executeNanoTime": 49,
+  "executeMilliTime": 49,
+  "annotationType": "ASYNC"
+}
+```
 
 ### Consumer Service:
 
-1. Создан микросервис "Metrics Consumer", который принимает метрики из Kafka топика "metrics-topic"
-   и анализируеи их для выявления проблем и трендов.
-2. Реализована обработка метрик и вывод статистики в логи или базу данных для последующего анализа.
+1. Создан микросервис "Metrics Consumer", который принимает метрики из Kafka топиков ```send-methodData-event```
+   и ```send-asyncMethodData-event```.
+2. Реализована обработка метрик и сохранение в базу данных для последующего анализа.
 
 ## Metrics Consumer API
 
 - Получение списка всех метрик
-    - GET /metrics
+    - GET /methodData
+- Получение списка всех метрик для конкретного метода
+    - GET /methodData/{methodName}
 - Получение конкретной метрики по ее идентификатору
-    - GET /metrics/{id}
+    - GET /methodData/stat/{methodName}
 
 ## Film Api (Перенесено из задания №1)
 
@@ -73,7 +85,8 @@ Consumer для их обработки и анализа, а также REST AP
 
 ## Ссылки (Доступны во время работы приложения)
 
-- Интерактивная Swagger документация (http://localhost:8080/swagger-ui/index.html#/)
+- (Producer) Интерактивная Swagger документация (http://localhost:8081/swagger-ui/index.html#/)
+- (Consumer) Интерактивная Swagger документация (http://localhost:8082/swagger-ui/index.html#/)
 
 ## Сборка
 

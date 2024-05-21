@@ -16,10 +16,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
                 )
         ),
         servers = {
-                @Server(url = "http://localhost:8081", description = "Default Server URL"),
+                @Server(url = "http://localhost:8082", description = "Default Server URL"),
         },
         tags = {
-                @Tag(name = "Film API", description = "API for films"),
                 @Tag(name = "Methods Data API", description = "API for methods data")
         }
 )
