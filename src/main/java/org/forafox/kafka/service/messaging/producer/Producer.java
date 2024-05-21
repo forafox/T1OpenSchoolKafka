@@ -16,7 +16,13 @@ public class Producer {
     private final SendMethodDataEventMapper sendMethodDataEventMapper;
     public MethodData sendMethodData(MethodData methodData) {
         kafkaMessagingService.sendMethodData(sendMethodDataEventMapper.toDto(methodData));
-        log.info("Send order from producer {}", methodData);
+        log.info("Send method data from producer {}", methodData);
         return methodData;
     }
+    public MethodData sendAsyncMethodData(MethodData methodData) {
+        kafkaMessagingService.sendAsyncMethodData(sendMethodDataEventMapper.toDto(methodData));
+        log.info("Send async method data from producer {}", methodData);
+        return methodData;
+    }
+
 }

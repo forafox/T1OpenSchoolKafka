@@ -12,5 +12,5 @@ public interface SendMethodDataEventMapper {
 
     MethodData toEntity(SendMethodDataEvent sendMethodDataEvent);
 
-    List<SendMethodDataEventMapper> toDtoList(List<MethodData> list);
+    List<SendMethodDataEvent> toDtoList(List<MethodData> list);
 }

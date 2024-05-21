@@ -12,12 +12,18 @@ import org.springframework.stereotype.Service;
 public class KafkaMessagingService {
 
     @Value("${topic.send-methodData-event}")
-    private String sendClientTopic;
+    private String sendMethodDataTopic;
+
+    @Value("${topic.send-asyncMethodData-event}")
+    private String sendAsyncMethodDataTopic;
 
     private final KafkaTemplate<String , Object> kafkaTemplate;
 
     public void sendMethodData(SendMethodDataEvent sendMethodDataEvent) {
-        kafkaTemplate.send(sendClientTopic, sendMethodDataEvent.getMethodName(), sendMethodDataEvent);
+        kafkaTemplate.send(sendMethodDataTopic, sendMethodDataEvent.getMethodName(), sendMethodDataEvent);
+    }
+    public void sendAsyncMethodData(SendMethodDataEvent sendMethodDataEvent) {
+        kafkaTemplate.send(sendAsyncMethodDataTopic, sendMethodDataEvent.getMethodName(), sendMethodDataEvent);
     }
 
 }

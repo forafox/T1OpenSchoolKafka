@@ -6,6 +6,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.forafox.domain.MethodData;
 import org.forafox.domain.enums.AnnotationType;
+import org.forafox.kafka.service.messaging.producer.Producer;
 import org.forafox.service.MethodDataService;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,7 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class TrackTimeAspect {
     private final MethodDataService methodDataService;
+    private final Producer producer;
 
     @Around("@annotation(org.forafox.annotation.TrackTime)")
     public Object logExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -34,6 +36,7 @@ public class TrackTimeAspect {
         methodData.setExecuteDate(new Date());
         methodData.setAnnotationType(AnnotationType.NoASYNC);
         methodDataService.save(methodData);
+        producer.sendMethodData(methodData);
         return proceed;
     }
 

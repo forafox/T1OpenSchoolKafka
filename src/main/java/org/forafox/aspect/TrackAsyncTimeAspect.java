@@ -8,6 +8,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.forafox.domain.MethodData;
 import org.forafox.domain.enums.AnnotationType;
+import org.forafox.kafka.service.messaging.producer.Producer;
 import org.forafox.service.MethodDataService;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,7 @@ import java.util.concurrent.CompletableFuture;
 @Slf4j
 public class TrackAsyncTimeAspect {
     private final MethodDataService methodDataService;
+    private final Producer producer;
     @Pointcut("@annotation(org.forafox.annotation.TrackAsyncTime)")
     public void asyncRunnerPointcut() {}
 
@@ -41,6 +43,7 @@ public class TrackAsyncTimeAspect {
                 methodData.setExecuteDate(new Date());
                 methodData.setAnnotationType(AnnotationType.ASYNC);
                 methodDataService.save(methodData);
+                producer.sendAsyncMethodData(methodData);
 
                 return proceed;
             } catch (Throwable e) {

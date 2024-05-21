@@ -24,5 +24,6 @@ spring:
                 headers: false
 topic:
   send-methodData-event: send-methodData-event
+  send-asyncMethodData-event: send-asyncMethodData-event
 server:
   port: 8081
