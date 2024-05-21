@@ -23,6 +23,6 @@ spring:
               type:
                 headers: false
 topic:
-  send-order: send-order-event
+  send-methodData-event: send-methodData-event
 server:
   port: 8081
